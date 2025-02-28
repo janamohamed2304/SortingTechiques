@@ -50,7 +50,7 @@ public class Main {
         System.out.println("Choose a sorting algorithm:");
         System.out.println("1. Counting Sort");
         System.out.println("2. Bubble Sort");
-        System.out.println("3. Insertion Sort");
+        System.out.println("3. Quick Sort");
         System.out.print("Enter choice: ");
         int algoChoice = scanner.nextInt();
 
