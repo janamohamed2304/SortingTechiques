@@ -1,4 +1,5 @@
 import SortingAlgorithms.CountingSort;
+import SortingAlgorithms.InsertionSort;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -49,7 +50,7 @@ public class Main {
     private static void sortMenu(Scanner scanner) {
         System.out.println("Choose a sorting algorithm:");
         System.out.println("1. Counting Sort");
-        System.out.println("2. Bubble Sort");
+        System.out.println("2. Insertion Sort");
         System.out.println("3. Quick Sort");
         System.out.print("Enter choice: ");
         int algoChoice = scanner.nextInt();
@@ -59,7 +60,7 @@ public class Main {
         
         List<int[]> steps = switch (algoChoice) {
             case 1 -> new CountingSort().Sort(array, showSteps);
-            // case 2 -> new BubbleSort().Sort(array, showSteps);
+            case 2 -> new InsertionSort().sort(array, showSteps);
             // case 3 -> new QuickSort().Sort(array, showSteps);
             default -> {
                 System.out.println("Invalid choice");
@@ -85,6 +86,3 @@ public class Main {
                 .toArray();
     }
 }
-
-
-
