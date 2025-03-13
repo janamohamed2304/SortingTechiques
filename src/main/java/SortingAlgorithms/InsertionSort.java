@@ -5,7 +5,7 @@ import java.util.*;
 public class InsertionSort {
     public static List<int[]> sort(int[] arr, boolean intermediate) {
         List<int[]> intermediateArrays = new ArrayList<>();
-        long startTime = System.currentTimeMillis();
+      //  long startTime = System.nanoTime();
         
         // First element is left as is since it is already sorted (so arrIndex starts from 1 not 0)
         for (int arrIndex = 1; arrIndex < arr.length; arrIndex++) {
@@ -32,9 +32,10 @@ public class InsertionSort {
         if (!intermediate) {
             intermediateArrays.add(Arrays.copyOf(arr, arr.length));
         }
-        
-        long endTime = System.currentTimeMillis();
-        System.out.println("Time taken: " + (endTime - startTime) + "ms");
+
+//        long endTime = System.nanoTime();
+//        long duration = endTime - startTime;
+//        System.out.println("Time taken = "+duration+" nanoseconds");
         
         return intermediateArrays;
     }

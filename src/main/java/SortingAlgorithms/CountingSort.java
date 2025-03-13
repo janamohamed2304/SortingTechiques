@@ -4,11 +4,12 @@ import java.util.*;
 
 public class CountingSort {
 
-    public List<int[]> Sort(int [] list , Boolean steps){
+    public static List<int[]> Sort(int[] list, Boolean steps){
         int min =list[0];
         int max =list[0];
         int [] finalArray=new int[list.length];
         List<int[]> intermediateArrays = new ArrayList<>();
+
         for(int i=0;i<list.length;i++){
             min=Math.min(min,list[i]);
             max=Math.max(max,list[i]);
@@ -40,7 +41,13 @@ public class CountingSort {
             intermediateArrays.add(Arrays.copyOf(finalArray, finalArray.length));
 
         }
+        System.arraycopy(finalArray, 0, list, 0, list.length);
+
 
         return intermediateArrays;
     }
+
+
+
+
 }
