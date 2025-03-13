@@ -1,37 +1,65 @@
 package SortingAlgorithms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class QuickSort {
 
-    public void Sort(List<Integer> arr, int start, int end){
+    private List<int[]> intermediateArrays = new ArrayList<>();
 
-        if(end <= start) return;
+    public List<int[]> Sort(int [] list , Boolean steps){
 
-        int pivot = partition(arr,start,end);
-        Sort(arr,start,pivot-1);
-        Sort(arr,pivot+1,end);
+        if(list.length <= 1){
+            this.intermediateArrays.add(list);
+            return this.intermediateArrays;
+        }
+
+        Qsort(list,0,list.length-1);
+
+        return this.intermediateArrays;
     }
 
-    public int partition(List<Integer> arr , int start, int end){
+    public void Qsort(int[] arr, int start, int end){
 
-        int pivot = arr.get(end);
+        if(end <= start){
+            if(this.intermediateArrays.size() == 0){
+                this.intermediateArrays.add(Arrays.copyOf(arr, arr.length));
+            }
+            return;
+        }
+
+        int pivot = partition(arr,start,end);
+        Qsort(arr,start,pivot-1);
+        Qsort(arr,pivot+1,end);
+    }
+
+    public int partition(int[] arr , int start, int end){
+
+        int pivot = arr[end];
         int i = start-1;
 
         for(int j = start; j <= end ; j++){
-            if(arr.get(j) < pivot){
+            if(arr[j] < pivot){
                 i++;
-                int temp = arr.get(i);
-                arr.set(i, arr.get(j));
-                arr.set(j, temp);
+                if(i != j) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+
+                    this.intermediateArrays.add(Arrays.copyOf(arr, arr.length));
+                }
             }
         }
 
         i++;
-        int temp = arr.get(i);
-        arr.set(i, arr.get(end));
-        arr.set(end, temp);
+        if(i != end) {
+            int temp = arr[i];
+            arr[i] = arr[end];
+            arr[end] = temp;
+
+            this.intermediateArrays.add(Arrays.copyOf(arr, arr.length));
+        }
 
         return i;
     }
