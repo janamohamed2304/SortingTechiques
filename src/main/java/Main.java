@@ -1,5 +1,6 @@
 import SortingAlgorithms.CountingSort;
 import SortingAlgorithms.InsertionSort;
+import SortingAlgorithms.QuickSort;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -61,7 +62,7 @@ public class Main {
         List<int[]> steps = switch (algoChoice) {
             case 1 -> new CountingSort().Sort(array, showSteps);
             case 2 -> new InsertionSort().sort(array, showSteps);
-            // case 3 -> new QuickSort().Sort(array, showSteps);
+            case 3 -> new QuickSort().Sort(array, showSteps);
             default -> {
                 System.out.println("Invalid choice");
                 yield null;

@@ -8,7 +8,7 @@ public class QuickSort {
 
     private List<int[]> intermediateArrays = new ArrayList<>();
 
-    public List<int[]> Sort(int [] list , Boolean steps){
+    public List<int[]> Sort(int[] list, Boolean steps){
 
         if(list.length <= 1){
             this.intermediateArrays.add(list);

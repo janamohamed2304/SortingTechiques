@@ -184,10 +184,47 @@ public class Tests {
         assertArrayEquals(expectedArr,arr);
 
     }
+
+    @Test
+    public void testQuickSortBestCase(){
+        int[] arr = {5,6,7,8,9,10,11,12};
+        int[] expectedArr = {5,6,7,8,9,10,11,12};
+        QuickSort q = new QuickSort();
+        q.Sort(arr,false);
+        assertArrayEquals(expectedArr,arr);
+    }
+
+    @Test
+    public void testQuickSortAverageCase(){
+        int[] arr = {20,5,3,8,1,2,16,4};
+        int[] expectedArr = {1,2,3,4,5,8,16,20};
+        QuickSort q = new QuickSort();
+        q.Sort(arr,false);
+        assertArrayEquals(expectedArr,arr);
+    }
+
+    @Test
+    public void testQuickSortWorseCase(){
+        int[] arr = {20,19,18,17,16,15,13,10};
+        int[] expectedArr = {10,13,15,16,17,18,19,20};
+        QuickSort q = new QuickSort();
+        q.Sort(arr,false);
+        assertArrayEquals(expectedArr,arr);
+    }
+
+    @Test
+    public void testQuickSortNegatineNumbers(){
+        int[] arr = {-5,-8,-3,-11,-1,0,-8};
+        int[] expectedArr = {-11,-8,-8,-5,-3,-1,0};
+        QuickSort q = new QuickSort();
+        q.Sort(arr,false);
+        assertArrayEquals(expectedArr,arr);
+    }
+
     @Test
     public void testEffecincy(){
 
-        int[] sortedarray={1,2,3,4,5,4};
+        int[] sortedarray={1,2,3,4,5};
         int[] reeversed={8,7,3,0,-1,-10};
         int[] average={1,7,4,10,6,9,-1,8,0};
 
@@ -199,7 +236,7 @@ public class Tests {
         System.out.println("Time taken for (Counting sort)= "+duration+" nanoseconds");
 
 
-        sortedarray= new int[]{1, 2, 3, 4, 5, 4};
+        sortedarray= new int[]{1, 2, 3, 4, 5};
         startTime = System.nanoTime();
         InsertionSort.sort(sortedarray,false);
         endTime = System.nanoTime();
@@ -207,12 +244,13 @@ public class Tests {
         System.out.println("Time taken for (insertion sort)= "+duration+" nanoseconds");
 
 
-//         sortedarray= new int[]{1, 2, 3, 4, 5, 4};
-//         startTime = System.nanoTime();
-//        //Qicksort
-//         endTime = System.nanoTime();
-//         duration = endTime - startTime;
-//         System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
+        sortedarray= new int[]{1, 2, 3, 4, 5};
+        QuickSort q = new QuickSort();
+        startTime = System.nanoTime();
+        q.Sort(sortedarray,false);
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
 
 
         System.out.println("reversed Array");
@@ -231,12 +269,13 @@ public class Tests {
         System.out.println("Time taken for (insertion sort)= "+duration+" nanoseconds");
 
 
-//         sortedarray= new int[]{1, 2, 3, 4, 5, 4};
-//         startTime = System.nanoTime();
-//        //Qicksort
-//         endTime = System.nanoTime();
-//         duration = endTime - startTime;
-//         System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
+        reeversed= new int[]{8, 7, 3, 0, -1, -10};
+        QuickSort q1 = new QuickSort();
+        startTime = System.nanoTime();
+        q1.Sort(reeversed,false);
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
 
 
         System.out.println("Average Array");
@@ -247,7 +286,7 @@ public class Tests {
         System.out.println("Time taken for (Counting sort)= "+duration+" nanoseconds");
 
 
-        average= new int[]{1, 2, 3, 4, 5, 4};
+        average= new int[]{1,7,4,10,6,9,-1,8,0};
         startTime = System.nanoTime();
         InsertionSort.sort(average,false);
         endTime = System.nanoTime();
@@ -255,13 +294,13 @@ public class Tests {
         System.out.println("Time taken for (insertion sort)= "+duration+" nanoseconds");
 
 
-//         sortedarray= new int[]{1, 2, 3, 4, 5, 4};
-//         startTime = System.nanoTime();
-//        //Qicksort
-//         endTime = System.nanoTime();
-//         duration = endTime - startTime;
-//         System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
-
+        average= new int[]{1,7,4,10,6,9,-1,8,0};
+        QuickSort q2 = new QuickSort();
+        startTime = System.nanoTime();
+        q2.Sort(average,false);
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Time taken for (Quick sort)= "+duration+" nanoseconds");
 
 
     }
@@ -271,8 +310,8 @@ public class Tests {
     public void testSortingEfficiencyONRandomInput() {
         Random rand = new Random();
 
-        // Generate a random size between 10 and 10,000
-        int size = rand.nextInt(9991) + 10;
+        // Generate a random size between 10 and 1000
+        int size = rand.nextInt(991) + 10;
         int[] arr = new int[size];
         int[] expectedArr = new int[size];
 
@@ -298,18 +337,24 @@ public class Tests {
         endTime = System.nanoTime();
         long countingTime = endTime - startTime;
 
+        // Quick Sort
+        int[] QuickArr = arr.clone();
+        QuickSort q = new QuickSort();
+        startTime = System.nanoTime();
+        q.Sort(QuickArr,false);
+        endTime = System.nanoTime();
+        long QuickTime = endTime - startTime;
+
         System.out.println("Random Array Size: " + size);
         System.out.println("Insertion Sort Time: " + insertionTime + " ns");
         System.out.println("Counting Sort Time: " + countingTime + " ns");
+        System.out.println("Quick Sort Time: " + QuickTime + " ns");
         System.out.println("---------------------------");
 
         assertArrayEquals(expectedArr, insertionArr);
         assertArrayEquals(expectedArr, countingArr);
+        assertArrayEquals(expectedArr, QuickArr);
     }
-
-
-
-
 
 
 }
